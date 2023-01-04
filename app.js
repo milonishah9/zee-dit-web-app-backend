@@ -49,9 +49,8 @@ const getDataOfmatch2Landing = () => {
 }
 
 const getDataOflandingPageTrend = () => {
-  const file = reader.readFile("landingPageTrend.csv");
+  const file = reader.readFile("Landing Page _Executive View_updated (1).xlsx");
   let data = [];
-
   const sheets = file.SheetNames;
 
   for (let i = 0; i < sheets.length; i++) {
@@ -247,7 +246,7 @@ app.get("/match2-viewers", (req, res) => {
 
 app.get("/match2-watchtime", (req, res) => {
   let data = getDataOfmatch2Landing();
-  console.log(data);
+
   let todayWatchtime = 0;
   let todayTime = null;
   let date;
@@ -353,10 +352,11 @@ app.get("/digital", (req, res) => {
     if (element.Source === "Digital") {
       count += 1;
       if (count <= 7) {
-        lastSevenDayDataOfCumulative_Viewers.push(element.Cumulative_Viewers);
-        lastSevenDayDataOfCumulative_Watchtime.push(element.Watchtime);
-      }
 
+        
+      }
+      lastSevenDayDataOfCumulative_Viewers.push(Math.round(element.cumulative_Viewers));
+      lastSevenDayDataOfCumulative_Watchtime.push(Math.round(element.cumulative_Watchtime));
       totalOfAllDegitalCumulative_Viewers += element.Viewers;
       totalOfAllDegitalCumulative_Watchtime += element.Watchtime;
     }
@@ -368,12 +368,12 @@ app.get("/digital", (req, res) => {
 
     lastSevenDayDataOfCumulative_Viewers.forEach((element) => {
       avgCountOfWatchTime += element;
-      lastSevenDayAvgOfCumulative_Viewers = avgCountOfWatchTime / 7;
+      lastSevenDayAvgOfCumulative_Viewers = avgCountOfWatchTime;
     });
 
     lastSevenDayDataOfCumulative_Watchtime.forEach((element) => {
       avgCountOfViewers += element;
-      lastSevenDayAvgOfCumulative_Watchtime = avgCountOfViewers / 7;
+      lastSevenDayAvgOfCumulative_Watchtime = avgCountOfViewers;
     });
   }
 
@@ -382,14 +382,14 @@ app.get("/digital", (req, res) => {
     viewers: {
       title: "Viewers",
       totalViewers: totalOfAllDegitalCumulative_Viewers,
-      lastSevenDayData: lastSevenDayDataOfCumulative_Viewers,
+      areaChartData: lastSevenDayDataOfCumulative_Viewers,
       different: lastSevenDayAvgOfCumulative_Viewers,
       prev: "5.33K",
     },
     watchTime: {
       title: "Watch Time",
       totalWatchTime: totalOfAllDegitalCumulative_Watchtime,
-      lastSevenDayData: lastSevenDayDataOfCumulative_Watchtime,
+      areaChartData: lastSevenDayDataOfCumulative_Watchtime,
       different: lastSevenDayAvgOfCumulative_Watchtime,
       prev: "5.33K",
     },
@@ -416,12 +416,10 @@ app.get("/linear", (req, res) => {
     if (element.Source === "Linear") {
       count += 1;
       if (count <= 7) {
-        lastSevenDayDataOfCumulative_Viewers.push(element.Cumulative_Viewers);
-        lastSevenDayDataOfCumulative_Watchtime.push(
-          element.Cumulative_Watchtime
-        );
+        console.log(element);
       }
-
+      lastSevenDayDataOfCumulative_Watchtime.push(Math.round(element.cumulative_Watchtime));
+      lastSevenDayDataOfCumulative_Viewers.push(Math.round(element.cumulative_Viewers));
       totalOfAllLinearCumulative_Viewers += element.Viewers;
       totalOfAllLinearCumulative_Watchtime += element.Watchtime;
     }
@@ -447,14 +445,14 @@ app.get("/linear", (req, res) => {
     viewers: {
       title: "Viewers",
       totalViewers: totalOfAllLinearCumulative_Viewers,
-      lastSevenDayData: lastSevenDayDataOfCumulative_Viewers,
+      areaChartData: lastSevenDayDataOfCumulative_Viewers,
       different: lastSevenDayAvgOfCumulative_Viewers,
       prev: "5.33K",
     },
     watchTime: {
       title: "Watch Time",
       totalWatchTime: totalOfAllLinearCumulative_Watchtime,
-      lastSevenDayData: lastSevenDayDataOfCumulative_Watchtime,
+      areaChartData: lastSevenDayDataOfCumulative_Watchtime,
       different: lastSevenDayAvgOfCumulative_Watchtime,
       prev: "5.33K",
     },
@@ -487,25 +485,27 @@ app.get("/combined", (req, res) => {
     if (element.Source === "Linear") {
       countOfLinear += 1;
       if (countOfLinear <= 7) {
-        lastSevenDayDataOfLinearCumulative_Viewers.push(
-          element.Cumulative_Viewers
-        );
-        lastSevenDayDataOfLinearCumulative_WatchTime.push(
-          element.Cumulative_Watchtime
-        );
+       
       }
+      lastSevenDayDataOfLinearCumulative_Viewers.push(
+        Math.round(element.cumulative_Viewers)
+      );
+      lastSevenDayDataOfLinearCumulative_WatchTime.push(
+        Math.round(element.cumulative_Watchtime)
+      );
     }
 
     if (element.Source === "Digital") {
       countOfDigital += 1;
       if (countOfDigital <= 7) {
-        lastSevenDayDataOfDigitalCumulative_Viewers.push(
-          element.Cumulative_Viewers
-        );
-        lastSevenDayDataOfDigitalCumulative_WatchTime.push(
-          element.Cumulative_Watchtime
-        );
+        
       }
+      lastSevenDayDataOfDigitalCumulative_Viewers.push(
+        element.cumulative_Viewers
+      );
+      lastSevenDayDataOfDigitalCumulative_WatchTime.push(
+        element.cumulative_Watchtime
+      );
     }
   });
 
@@ -558,14 +558,14 @@ app.get("/combined", (req, res) => {
     viewers: {
       title: "Viewers",
       totalViewers: totalOfAllCombinedCumulative_Viewers,
-      lastSevenDayData: lastSevenDayDataOfDigitalPluseLinearCumulative_Viewers,
+      areaChartData: lastSevenDayDataOfDigitalPluseLinearCumulative_Viewers,
       different: avgOfCumulative_Viewers,
       prev: "5.33K",
     },
     watchTime: {
       title: "Watch Time",
       totalWatchTime: totalOfAllCombinedCumulative_WatchTime,
-      lastSevenDayData:
+      areaChartData:
         lastSevenDayDataOfDigitalPluseLinearCumulative_WatchTime,
       different: avgOfCumulative_WatchTime,
       prev: "5.33K",
@@ -1169,7 +1169,7 @@ app.get("/ottGraphApi", (req, res) => {
     scoreHome.push(element.score);
   });
   var l = JSON.stringify(scoreHome);
-  console.log("Array is here:", scoreHome);
+  // console.log("Array is here:", scoreHome);
   res.end(JSON.stringify(scoreHome));
 });
 
@@ -1194,7 +1194,7 @@ app.get("/csvApi", (req, res) => {
     scoreHome = scoreHome + element.Watchtime;
   });
   var l = JSON.stringify(scoreHome);
-  console.log("sum issss:", scoreHome);
+  // console.log("sum issss:", scoreHome);
   res.end(JSON.stringify(scoreHome));
 });
 
@@ -1217,7 +1217,7 @@ app.get("/sumAPIs", (req, res) => {
         scoreHome = scoreHome + element.score;
       });
       var l = JSON.stringify(scoreHome);
-      console.log("sum is:", scoreHome);
+      // console.log("sum is:", scoreHome);
       res.end(JSON.stringify(scoreHome));
     });
   });

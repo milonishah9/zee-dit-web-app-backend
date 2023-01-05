@@ -350,15 +350,18 @@ app.get("/digital", (req, res) => {
   let count = 0;
   data.forEach((element) => {
     if (element.Source === "Digital") {
+      console.log(element.Viewers);
       count += 1;
       if (count <= 7) {
-
         
       }
       lastSevenDayDataOfCumulative_Viewers.push(Math.round(element.cumulative_Viewers));
       lastSevenDayDataOfCumulative_Watchtime.push(Math.round(element.cumulative_Watchtime));
-      totalOfAllDegitalCumulative_Viewers += element.Viewers;
-      totalOfAllDegitalCumulative_Watchtime += element.Watchtime;
+      if(element.Viewers !== undefined && element.Watchtime !== undefined){
+        totalOfAllDegitalCumulative_Viewers += (Math.round(element.Viewers))/1000000;
+        totalOfAllDegitalCumulative_Watchtime += (Math.round(element.Watchtime))/1000000;
+      }
+      
     }
   });
 
@@ -381,14 +384,14 @@ app.get("/digital", (req, res) => {
     title: "Digital",
     viewers: {
       title: "Viewers",
-      totalViewers: totalOfAllDegitalCumulative_Viewers,
+      totalViewers: totalOfAllDegitalCumulative_Viewers.toFixed(2) + "M",
       areaChartData: lastSevenDayDataOfCumulative_Viewers,
       different: lastSevenDayAvgOfCumulative_Viewers,
       prev: "5.33K",
     },
     watchTime: {
       title: "Watch Time",
-      totalWatchTime: totalOfAllDegitalCumulative_Watchtime,
+      totalWatchTime: totalOfAllDegitalCumulative_Watchtime.toFixed(2) + "M",
       areaChartData: lastSevenDayDataOfCumulative_Watchtime,
       different: lastSevenDayAvgOfCumulative_Watchtime,
       prev: "5.33K",

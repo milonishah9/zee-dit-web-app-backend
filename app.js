@@ -383,14 +383,14 @@ app.get("/digital", (req, res) => {
   const arr = {
     title: "Digital",
     viewers: {
-      title: "Viewers",
+      title: "Cumulative Viewers",
       totalViewers: totalOfAllDegitalCumulative_Viewers.toFixed(2) + "M",
       areaChartData: lastSevenDayDataOfCumulative_Viewers,
       different: lastSevenDayAvgOfCumulative_Viewers,
       prev: "5.33K",
     },
     watchTime: {
-      title: "Watch Time",
+      title: "Cumulative  Watch Time",
       totalWatchTime: totalOfAllDegitalCumulative_Watchtime.toFixed(2) + "M",
       areaChartData: lastSevenDayDataOfCumulative_Watchtime,
       different: lastSevenDayAvgOfCumulative_Watchtime,
@@ -446,14 +446,14 @@ app.get("/linear", (req, res) => {
   const arr = {
     title: "Linear",
     viewers: {
-      title: "Viewers",
+      title: "Cumulative  Viewers",
       totalViewers: totalOfAllLinearCumulative_Viewers,
       areaChartData: lastSevenDayDataOfCumulative_Viewers,
       different: lastSevenDayAvgOfCumulative_Viewers,
       prev: "5.33K",
     },
     watchTime: {
-      title: "Watch Time",
+      title: "Cumulative  Watch Time",
       totalWatchTime: totalOfAllLinearCumulative_Watchtime,
       areaChartData: lastSevenDayDataOfCumulative_Watchtime,
       different: lastSevenDayAvgOfCumulative_Watchtime,
@@ -559,14 +559,14 @@ app.get("/combined", (req, res) => {
   const arr = {
     title: "Combined",
     viewers: {
-      title: "Viewers",
+      title: "Cumulative  Viewers",
       totalViewers: totalOfAllCombinedCumulative_Viewers,
       areaChartData: lastSevenDayDataOfDigitalPluseLinearCumulative_Viewers,
       different: avgOfCumulative_Viewers,
       prev: "5.33K",
     },
     watchTime: {
-      title: "Watch Time",
+      title: "Cumulative  Watch Time",
       totalWatchTime: totalOfAllCombinedCumulative_WatchTime,
       areaChartData:
         lastSevenDayDataOfDigitalPluseLinearCumulative_WatchTime,

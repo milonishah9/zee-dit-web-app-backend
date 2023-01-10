@@ -446,7 +446,7 @@ app.get("/linear", (req, res) => {
   const arr = {
     title: "Linear",
     viewers: {
-      title: "Cumulative  Viewers",
+      title: "Cumulative  Reach",
       totalViewers: totalOfAllLinearCumulative_Viewers,
       areaChartData: lastSevenDayDataOfCumulative_Viewers,
       different: lastSevenDayAvgOfCumulative_Viewers,

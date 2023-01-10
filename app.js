@@ -30,6 +30,7 @@ const getDataOfMinuteByMinuteTrend = () => {
       data.push(res);
     });
   }
+  
   return data;
 };
 

@@ -6,7 +6,21 @@ const reader = require("xlsx");
 const cors = require("cors");
 const { json } = require("express");
 const moment = require("moment");
-app.use(cors());
+
+const corsOpts = {
+  origin: '*',
+
+  methods: [
+    'GET',
+    'POST',
+  ],
+
+  allowedHeaders: [
+    'Content-Type',
+  ],
+};
+
+app.use(cors(corsOpts));
 
 // ----------today and yessteerday date ----------
 var today = moment().format("YYYY-MM-DD");
@@ -30,7 +44,7 @@ const getDataOfMinuteByMinuteTrend = () => {
       data.push(res);
     });
   }
-  
+
   return data;
 };
 
@@ -354,15 +368,15 @@ app.get("/digital", (req, res) => {
       console.log(element.Viewers);
       count += 1;
       if (count <= 7) {
-        
+
       }
       lastSevenDayDataOfCumulative_Viewers.push(Math.round(element.cumulative_Viewers));
       lastSevenDayDataOfCumulative_Watchtime.push(Math.round(element.cumulative_Watchtime));
-      if(element.Viewers !== undefined && element.Watchtime !== undefined){
-        totalOfAllDegitalCumulative_Viewers += (Math.round(element.Viewers))/1000000;
-        totalOfAllDegitalCumulative_Watchtime += (Math.round(element.Watchtime))/1000000;
+      if (element.Viewers !== undefined && element.Watchtime !== undefined) {
+        totalOfAllDegitalCumulative_Viewers += (Math.round(element.Viewers)) / 1000000;
+        totalOfAllDegitalCumulative_Watchtime += (Math.round(element.Watchtime)) / 1000000;
       }
-      
+
     }
   });
 
@@ -489,7 +503,7 @@ app.get("/combined", (req, res) => {
     if (element.Source === "Linear") {
       countOfLinear += 1;
       if (countOfLinear <= 7) {
-       
+
       }
       lastSevenDayDataOfLinearCumulative_Viewers.push(
         Math.round(element.cumulative_Viewers)
@@ -502,7 +516,7 @@ app.get("/combined", (req, res) => {
     if (element.Source === "Digital") {
       countOfDigital += 1;
       if (countOfDigital <= 7) {
-        
+
       }
       lastSevenDayDataOfDigitalCumulative_Viewers.push(
         element.cumulative_Viewers

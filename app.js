@@ -370,11 +370,11 @@ app.get("/digital", (req, res) => {
       if (count <= 7) {
 
       }
-      lastSevenDayDataOfCumulative_Viewers.push(Math.round(element.cumulative_Viewers));
-      lastSevenDayDataOfCumulative_Watchtime.push(Math.round(element.cumulative_Watchtime));
+      lastSevenDayDataOfCumulative_Viewers.push(element.cumulative_Viewers);
+      lastSevenDayDataOfCumulative_Watchtime.push(element.cumulative_Watchtime);
       if (element.Viewers !== undefined && element.Watchtime !== undefined) {
-        totalOfAllDegitalCumulative_Viewers += (element.Viewers) ;
-        totalOfAllDegitalCumulative_Watchtime += (element.Watchtime) ;
+        totalOfAllDegitalCumulative_Viewers += (element.Viewers);
+        totalOfAllDegitalCumulative_Watchtime += (element.Watchtime);
       }
 
     }
@@ -406,7 +406,7 @@ app.get("/digital", (req, res) => {
     },
     watchTime: {
       title: "Cumulative  Watch Time",
-      totalWatchTime: totalOfAllDegitalCumulative_Watchtimez,
+      totalWatchTime: totalOfAllDegitalCumulative_Watchtime,
       areaChartData: lastSevenDayDataOfCumulative_Watchtime,
       different: lastSevenDayAvgOfCumulative_Watchtime,
       prev: "5.33K",

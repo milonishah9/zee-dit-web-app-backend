@@ -370,11 +370,11 @@ app.get("/digital", (req, res) => {
       if (count <= 7) {
 
       }
-      lastSevenDayDataOfCumulative_Viewers.push(Math.round(element.cumulative_Viewers));
-      lastSevenDayDataOfCumulative_Watchtime.push(Math.round(element.cumulative_Watchtime));
+      lastSevenDayDataOfCumulative_Viewers.push(element.cumulative_Viewers);
+      lastSevenDayDataOfCumulative_Watchtime.push(element.cumulative_Watchtime);
       if (element.Viewers !== undefined && element.Watchtime !== undefined) {
-        totalOfAllDegitalCumulative_Viewers += (Math.round(element.Viewers)) / 1000000;
-        totalOfAllDegitalCumulative_Watchtime += (Math.round(element.Watchtime)) / 1000000;
+        totalOfAllDegitalCumulative_Viewers += (element.Viewers);
+        totalOfAllDegitalCumulative_Watchtime += (element.Watchtime);
       }
 
     }
@@ -399,14 +399,14 @@ app.get("/digital", (req, res) => {
     title: "Digital",
     viewers: {
       title: "Cumulative Viewers",
-      totalViewers: totalOfAllDegitalCumulative_Viewers.toFixed(2) + "M",
+      totalViewers: totalOfAllDegitalCumulative_Viewers,
       areaChartData: lastSevenDayDataOfCumulative_Viewers,
       different: lastSevenDayAvgOfCumulative_Viewers,
       prev: "5.33K",
     },
     watchTime: {
       title: "Cumulative  Watch Time",
-      totalWatchTime: totalOfAllDegitalCumulative_Watchtime.toFixed(2) + "M",
+      totalWatchTime: totalOfAllDegitalCumulative_Watchtime,
       areaChartData: lastSevenDayDataOfCumulative_Watchtime,
       different: lastSevenDayAvgOfCumulative_Watchtime,
       prev: "5.33K",
@@ -436,8 +436,8 @@ app.get("/linear", (req, res) => {
       if (count <= 7) {
         console.log(element);
       }
-      lastSevenDayDataOfCumulative_Watchtime.push(Math.round(element.cumulative_Watchtime));
-      lastSevenDayDataOfCumulative_Viewers.push(Math.round(element.cumulative_Viewers));
+      lastSevenDayDataOfCumulative_Watchtime.push(element.cumulative_Watchtime);
+      lastSevenDayDataOfCumulative_Viewers.push(element.cumulative_Viewers);
       totalOfAllLinearCumulative_Viewers += element.Viewers;
       totalOfAllLinearCumulative_Watchtime += element.Watchtime;
     }
@@ -506,10 +506,10 @@ app.get("/combined", (req, res) => {
 
       }
       lastSevenDayDataOfLinearCumulative_Viewers.push(
-        Math.round(element.cumulative_Viewers)
+        element.cumulative_Viewers
       );
       lastSevenDayDataOfLinearCumulative_WatchTime.push(
-        Math.round(element.cumulative_Watchtime)
+        element.cumulative_Watchtime
       );
     }
 

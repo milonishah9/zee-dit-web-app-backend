@@ -1216,6 +1216,21 @@ app.get("/csvApi", (req, res) => {
   res.end(JSON.stringify(scoreHome));
 });
 
+
+app.get("/organic-data-api", (req, res) => {
+  const data = [
+    {
+      TopPlatform: "Android App",
+      TopUserCohort: "Female, 24-42 Years",
+      VV: "76%",
+      NVV: "24%",
+    },
+  ];
+  res.end(JSON.stringify(data));
+});
+
+
+
 app.get("/sumAPIs", (req, res) => {
   var con = mysql.createConnection({
     host: "127.0.0.1",

@@ -1216,6 +1216,29 @@ app.get("/csvApi", (req, res) => {
   res.end(JSON.stringify(scoreHome));
 });
 
+
+app.get("/organic-data-api", (req, res) => {
+  const data = [
+    {
+      ORGANIC: "46%",
+      PAID: "54%",
+      RETURNING: "25%",
+      NEW: "75%",
+      ANONYMOUS:"82%",
+      SIGNUP:"18%",
+      EXPLORE:"50%",
+      SEARCH:"20%",
+      SUBSCRIBED: "07%",
+      WATCHADS: "30%",
+      WATCHPREMIUMCONTENT: "3%",
+      WATCHFREECONTENT: "54%"
+    },
+  ];
+  res.end(JSON.stringify(data));
+});
+
+
+
 app.get("/sumAPIs", (req, res) => {
   var con = mysql.createConnection({
     host: "127.0.0.1",

@@ -1220,7 +1220,7 @@ app.get("/csvApi", (req, res) => {
 app.get("/organic-data-api", (req, res) => {
   const data = [
     {
-      ORGANIC: "46%",
+      ORGANIC: "49%",
       PAID: "54%",
       RETURNING: "25%",
       NEW: "75%",

@@ -1220,10 +1220,18 @@ app.get("/csvApi", (req, res) => {
 app.get("/organic-data-api", (req, res) => {
   const data = [
     {
-      TopPlatform: "Android App",
-      TopUserCohort: "Female, 24-42 Years",
-      VV: "76%",
-      NVV: "24%",
+      ORGANIC: "46%",
+      PAID: "54%",
+      RETURNING: "25%",
+      NEW: "75%",
+      ANONYMOUS:"82%",
+      SIGNUP:"18%",
+      EXPLORE:"50%",
+      SEARCH:"20%",
+      SUBSCRIBED: "07%",
+      WATCHADS: "30%",
+      WATCHPREMIUMCONTENT: "3%",
+      WATCHFREECONTENT: "54%"
     },
   ];
   res.end(JSON.stringify(data));
